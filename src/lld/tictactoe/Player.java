@@ -12,6 +12,8 @@ TicTacToe
 
 P1 > P2 > P3
 
+
+
 P1 -> wins P2
 P1 -> wins P2
 P2 -> wins P1
@@ -72,10 +74,4 @@ public class Player {
     public void setPlayerSymbol(char playerSymbol) {
         this.playerSymbol = playerSymbol;
     }
-}
-
-class PlayerHistory {
-    private int noOfGamesPlayed;
-    private int noOfGamesWon;
-    private int ranking;
 }

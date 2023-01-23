@@ -1,5 +1,6 @@
 package lld.tictactoe;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -10,17 +11,32 @@ public class GameBoard {
     int boardSize; // 3
     Queue<Player> nextTurn; // [A, B, C]
     Scanner input;
-    // offer, poll
+    // offer ( enqueue ) , poll ( dequeue )
     // player Info ( A , B, C ) -> A -> B -> C -> A -> B -> C-> A
     //  B -> C -> A
+
+    // boardSize = 3
+    // outer for loop -> no of lines ( rows ) -> 5
+    // no of columns -> 5
+
+    // boardSize = 4
+    // no of rows -> 7
+    // no of cols -> 7
+
+    // boardSize = 5
+    // no of rows -> 9
+    // no of cols -> 9
+
+    // player 0 => player 1
 
     public GameBoard(int boardSize, Player[] players) {
         this.boardSize = boardSize;
         this.board = new char[2 * boardSize - 1][2 * boardSize - 1];
         initialise(this.board);
         nextTurn = new LinkedList<>();
-        nextTurn.offer(players[0]);
-        nextTurn.offer(players[1]);
+        Arrays.stream(players).forEach(player -> nextTurn.offer(player));
+//        nextTurn.offer(players[0]);
+//        nextTurn.offer(players[1]);
         input = new Scanner(System.in);
     }
 
@@ -45,23 +61,32 @@ public class GameBoard {
 
     public void startGame() {
         int noOfMoves = 0;
+        printBoard();
         while (true) {
             noOfMoves += 1;
             if (noOfMoves == (boardSize * boardSize) + 1) {
                 System.out.println("Match Draw");
                 break;
-            }
-            Player p = nextTurn.poll();
-            int position = getUserInput(p);            // ( row, col )
-            int row = 2 * ((position % boardSize == 0) ? (position / boardSize) - 1 : position / boardSize);
-            int col = 2 * ((position % boardSize == 0 ? boardSize : position % boardSize) - 1);
+            } // P3 P2 P1
+            Player p = nextTurn.poll(); // P1
+            int position = getUserInput(p);           // ( row, col )
+            int row = getRow(position);
+            int col = getCol(position);
             board[row][col] = p.getPlayerSymbol();
-            printBoard();
             System.out.println("Board After the Move");
+            printBoard();
             // success
             if (noOfMoves >= boardSize && checkEndGame(p, row, col)) break;
             nextTurn.offer(p);
         }
+    }
+
+    public int getRow(int position) {
+        return 2 * ((position % boardSize == 0) ? (position / boardSize) - 1 : position / boardSize);
+    }
+
+    public int getCol(int position) {
+        return 2 * ((position % boardSize == 0 ? boardSize : position % boardSize) - 1);
     }
 
     private boolean checkEndGame(Player p, int row, int col) {
@@ -92,12 +117,12 @@ public class GameBoard {
     }
 
     private int getUserInput(Player p) {
-        printBoard();
+//        printBoard();
         System.out.println(p.getPlayerName() +
                 " Please Enter a number between 1 - " + (boardSize * boardSize));
         int val = input.nextInt();
         while (!validateInput(val)) {
-            printBoard();
+//            printBoard();
             System.out.println("Wrong Position - " + p.getPlayerName() +
                     " Please Enter a number between 1 - " + (boardSize * boardSize));
             val = input.nextInt();
@@ -105,10 +130,16 @@ public class GameBoard {
         return val;
     }
 
+    // val is in between  ( 1 to board*board )
+    // val -> 6 ,
+    // boardSize -> 3
+    // row = 2 * floor ( val / boardSize )
+    // col = 2 * ( ( val % boardSize == 0 ? boardSize : val % boardSize ) - 1 )
+    // board[row][col] == null ( place return true )
     private boolean validateInput(int val) { // val = 1 , row = 0, col = 0; val =2 , row = 0, col = 2
         if (val < 1 || val > (boardSize * boardSize)) return false;
-        int row = 2 * ((val % boardSize == 0) ? (val / boardSize) - 1 : val / boardSize);
-        int col = 2 * ((val % boardSize == 0 ? boardSize : val % boardSize) - 1);
+        int row = getRow(val);
+        int col = getCol(val);
         if ((int) board[row][col] != 0) return false;
         return true;
     }
