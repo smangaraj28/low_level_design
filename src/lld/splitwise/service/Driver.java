@@ -23,11 +23,12 @@ public class Driver {
         //            String command = "SHOW u1"; (show balance for that particular user u1 )
         //            String command = "SHOW"; ( show all balances )
 
+        //  [ "EXPENSE" , "u1" , 1000,  4, u1,  u2, u3, u4, EQUAL ] // commands
+        //        0         1      2    3   4   5   6   7      8
         Scanner in = new Scanner(System.in);
-        while (true) {
-
+        while (true) { //  [ "EXPENSE" , "u1" , 1000,  4, u1,  u2, u3, u4, EQUAL ]
             String command = in.nextLine();
-            String[] commands = command.split(" ");
+            String[] commands = command.split(" "); // [ "SHOW" ] // [ "SHOW" , "u1" ]
             String commandType = commands[0];
             switch (commandType) {
                 case "SHOW" -> {

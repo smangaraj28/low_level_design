@@ -8,6 +8,7 @@ public class Main {
         // serial requests
         // One bucket per one user
         UserBucketCreator userBucketCreator = new UserBucketCreator(1);
+        // serial call / sequencial call
 //        for (int i = 0; i < 12; i++) {
 //            userBucketCreator.accessApplication(1);
 //        }

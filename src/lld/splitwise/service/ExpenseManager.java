@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// ExpenseManager ( expenses , userMap, balanceSheet )
+// ExpenseService ( creating expenses )
+// Expense Class ( creating splits )
+
 
 public class ExpenseManager {
     List<Expense> expenses;
@@ -115,9 +119,9 @@ public class ExpenseManager {
         String user1Name = userMap.get(user1).getName();
         String user2Name = userMap.get(user2).getName();
         if (amount < 0) {
-            System.out.println(user1Name + " owes " + user2Name + " : " + Math.abs(amount));
+            System.out.println(user1Name + " has to pay " + user2Name + " : " + Math.abs(amount));
         } else if (amount > 0) {
-            System.out.println(user2Name + " owes " + user1Name + " : " + Math.abs(amount));
+            System.out.println(user2Name + " has to pay " + user1Name + " : " + Math.abs(amount));
         }
     }
 }

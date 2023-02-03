@@ -183,3 +183,22 @@
 //    UNPAID, PENDING, COMPLETED, DECLINED, CANCELLED, REFUNDED;
 //
 //}
+
+
+//class A  {
+//    int a;
+//
+//}
+//
+//A a1 = new A();
+//A a2 = new A();
+//
+//
+//const redColur = "RED";
+//const yellowColur = "YELLOW";
+//
+// enum Colour {
+//    RED, YELLOW, WHITE
+//}
+
+//Colour.RED

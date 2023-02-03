@@ -9,6 +9,7 @@ abstract public class Expense {
     private List<Split> splits;
 
     // u4 1200 4 u1 u2 u3 u4 EXACT 200 300 600 100
+    // expense ( amount = 1200 , paidBy = u4, splits = [ ExactSplit(u1, 200 ),ExactSplit(u2, 300 ),ExactSplit(u3, 600 ), ExactSplit(u4, 100 ) ]
 
     // u4 1200 4 u1 u2 u3 u4 PERCENT 20 30 40 10
     // u4 1200 4 u1 u2 u3 u4 EQUAL                            ( same )

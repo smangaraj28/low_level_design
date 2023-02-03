@@ -8,10 +8,10 @@ import java.util.concurrent.atomic.AtomicLong;
 public class TokenBucket implements RateLimiter {
     // bucket
     // refresh rate (1 sec -> 10 requests )
-    private int bucketCapacity;
-    private int refreshRate;
+    private int bucketCapacity; // 10
+    private int refreshRate; // 1
     private AtomicInteger currentCapacity; // thread safe
-    private AtomicLong lastUpdatedTime;
+    private AtomicLong lastUpdatedTime; // thread safe
 
 //    s1 -> 10 , 12 requests ->
 

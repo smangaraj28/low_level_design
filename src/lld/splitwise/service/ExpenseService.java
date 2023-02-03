@@ -6,7 +6,7 @@ import lld.splitwise.model.*;
 import java.util.List;
 
 public class ExpenseService {
-    // u4 1200 4 u1 u2 u3 u4 EXACT 200 300 600 100
+    // EXPENSE u4 1200 4 u1 u2 u3 u4 EXACT 200 300 600 100
 
 //    u1 -> 20
 //    u2 -> 30

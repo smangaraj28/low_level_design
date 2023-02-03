@@ -18,8 +18,8 @@ public class PercentExpense extends Expense {
         double totalPercent = 100;
         double sumOfSplitPercent = 0;
         for (Split split : this.getSplits()) {
-            PercentSplit exactSplit = (PercentSplit) split;
-            sumOfSplitPercent += exactSplit.getPercent();
+            PercentSplit percentSplit = (PercentSplit) split;
+            sumOfSplitPercent += percentSplit.getPercent();
         }
         if (sumOfSplitPercent != totalPercent) {
             return false;
